@@ -2,11 +2,11 @@
 
 @if (showMenu)
 {
-<TelerikMenu Data="@MenuItems"  OnClick="@((MenuItem item) => OnClickHandler(item))"
-             ParentIdField="@nameof(MenuItem.SectionId)"
-             IdField="@nameof(MenuItem.Id)"
-             TextField="@nameof(MenuItem.Section)">
-</TelerikMenu>
+    <TelerikMenu Data="@MenuItems"  OnClick="@((MenuItem item) => OnClickHandler(item))"
+                 ParentIdField="@nameof(MenuItem.SectionId)"
+                 IdField="@nameof(MenuItem.Id)"
+                 TextField="@nameof(MenuItem.Section)">
+    </TelerikMenu>
 }
 <TelerikTextBox Label="First Name" @bind-Value="TextBoxVal"></TelerikTextBox>
 
