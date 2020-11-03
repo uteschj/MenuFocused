@@ -1,0 +1,79 @@
+﻿@page "/"
+
+@if (showMenu)
+{
+<TelerikMenu Data="@MenuItems"  OnClick="@((MenuItem item) => OnClickHandler(item))"
+             ParentIdField="@nameof(MenuItem.SectionId)"
+             IdField="@nameof(MenuItem.Id)"
+             TextField="@nameof(MenuItem.Section)">
+</TelerikMenu>
+}
+<TelerikTextBox Label="First Name" @bind-Value="TextBoxVal"></TelerikTextBox>
+
+@code {
+    bool showMenu = true;
+    string TextBoxVal { get; set; } = "";
+
+    public List<MenuItem> MenuItems { get; set; }
+    public class MenuItem
+    {
+        public int Id { get; set; }
+        public int? SectionId { get; set; }
+        public string Section { get; set; }
+    }
+    protected override void OnInitialized()
+    {
+        MenuItems = new List<MenuItem>()
+        {
+            new MenuItem()
+            {
+                Id = 1,
+                Section = "Overview"
+            },
+            new MenuItem()
+            {
+                Id = 2,
+                Section = "Demos"
+            },
+            new MenuItem()
+            {
+                Id = 3,
+                Section = "Roadmap"
+            },
+            new MenuItem()
+            {
+                Id = 4,
+                SectionId = 3,
+                Section = "What's new"
+            },
+            new MenuItem()
+            {
+                Id = 5,
+                SectionId = 3,
+                Section = "Roadmap"
+            },
+            new MenuItem()
+            {
+                Id = 6,
+                SectionId = 3,
+                Section = "Release History"
+            }
+        };
+
+        base.OnInitialized();
+    }
+
+    protected async Task OnClickHandler(MenuItem item)
+    {
+        await ToggleMenu();
+        await ToggleMenu();
+    }
+
+    private async Task ToggleMenu()
+    {
+        showMenu = !showMenu;
+        await InvokeAsync(StateHasChanged);
+
+    }
+}
+
